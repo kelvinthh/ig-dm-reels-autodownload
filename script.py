@@ -1,5 +1,6 @@
 import os
 import json
+import time
 from dotenv import load_dotenv
 from instagrapi import Client
 from instagrapi.exceptions import LoginRequired
@@ -29,3 +30,18 @@ else:
 
 user_id = cl.user_id_from_username(username)
 print(f"The user id is {user_id}")
+
+# Initialize an empty set to store the ids of the messages already seen
+seen_message_ids = set()
+
+while True:
+    threads = cl.direct_threads()
+    for thread in threads:
+        thread_id = thread.id
+        messages = cl.direct_messages(thread_id)
+        for message in messages:
+            if message.id not in seen_message_ids:
+                print(f"New message in thread {thread_id}: {message.text}")
+                seen_message_ids.add(message.id)
+    
+    time.sleep(10)  # check for new messages every 10 seconds
