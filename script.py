@@ -41,7 +41,12 @@ while True:
         messages = cl.direct_messages(thread_id)
         for message in messages:
             if message.id not in seen_message_ids:
-                print(f"New message in thread {thread_id}: {message.text}")
+                match message.item_type:
+                    case 'clip':
+                        print(f"New reel in thread {thread_id}: {message.clip.video_url}")
+                    case 'xma_story_share':
+                        print(f"New story video in thread {thread_id}: {message.id}")
+                    case _:
+                        print(f"New message in thread {thread_id}: {message.text}")
                 seen_message_ids.add(message.id)
-    
-    time.sleep(10)  # check for new messages every 10 seconds
+    time.sleep(3)  # check for new messages every 10 seconds
