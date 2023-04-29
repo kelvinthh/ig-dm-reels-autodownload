@@ -30,6 +30,7 @@ pip install -r requirements.txt
 IG_USERNAME=your_username
 IG_EMAIL=your_email
 IG_PASSWORD=your_password
+LOGIN_ONLY=True_or_False
 ```
 
 Replace `your_username`, `your_email`, and `your_password` with your actual Instagram username, email, and password.
