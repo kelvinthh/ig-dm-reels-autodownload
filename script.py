@@ -41,6 +41,17 @@ def save_seen_messages(file, messages):
 def get_now():
     return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
+def sleep_countdown():
+    # check for new messages every random seconds
+    sleep_time = random.randint(30 * 60, 60 * 60)
+    print(f"[{get_now()}] Timeout duration: {sleep_time} seconds.")
+    
+    for remaining_time in range(sleep_time, 0, -1):
+        sys.stdout.write(f"\r[{get_now()}] Time remaining: {remaining_time} second(s).")
+        sys.stdout.flush()
+        time.sleep(1)
+    
+    sys.stdout.write("\n")
 
 def main():
     cl = Client()
@@ -59,6 +70,8 @@ def main():
 
     seen_message_ids = load_seen_messages(seen_messages_file)
     print(f"[{get_now()}] Loaded seen messages.")
+
+    sleep_time = random.randint(15 * 60, 30 * 60)
 
     while True:
         try:
@@ -109,20 +122,14 @@ def main():
 
         except Exception as e:
             print(f"[{get_now()}] An exception occurred: {e}")
-            print("[{get_now()}] Deleting the session file and restarting the script.")
+            print(f"[{get_now()}] Deleting the session file and restarting the script.")
             if os.path.exists(session_file):
                 os.remove(session_file)
+            sleep_countdown()
+            print(f"[{get_now()}] Restarting the script now.")
             os.execv(sys.executable, ["python"] + sys.argv)
 
-        # check for new messages every random seconds
-        sleep_time = random.randint(15 * 60, 30 * 60)
-        print(f"[{get_now()}] Timeout duration: {sleep_time} seconds.")
-        for remaining_time in range(sleep_time, 0, -1):
-            sys.stdout.write(f"\r[{get_now()}] Time remaining: {remaining_time}s")
-            sys.stdout.flush()
-            time.sleep(1)
-
-        sys.stdout.write("\n")
+        sleep_countdown()
 
 
 if __name__ == "__main__":
