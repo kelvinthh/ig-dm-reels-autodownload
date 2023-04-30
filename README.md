@@ -14,8 +14,8 @@ This script monitors Instagram direct messages and downloads reels shared via di
 1. Clone the repository:
 
 ```
-git clone https://github.com/kelvinthh/ig-scrape.git
-cd ig-scrape
+git clone https://github.com/kelvinthh/ig-dm-reels-autodownload.git
+cd ig-dm-reels-autodownload
 ```
 
 2. Install the required packages:
@@ -41,7 +41,6 @@ To start the script, run:
 
 ```
 python script.py
-
 ```
 
 The script will authenticate with Instagram, monitor your direct messages, and download reels shared in direct messages. It will also log story videos shared in direct messages.
