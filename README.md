@@ -1,4 +1,4 @@
-# Instagram Scraper (DM Reel Bot/Downloader)
+# Instagram DM Reels Auto-downloader (DM Reel Bot/Downloader)
 
 This script monitors Instagram direct messages and downloads reels shared via direct messages. It uses the `instagrapi` library to access and interact with the instagrapi.
 
