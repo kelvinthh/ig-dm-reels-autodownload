@@ -41,17 +41,37 @@ def save_seen_messages(file, messages):
 def get_now():
     return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
+
 def sleep_countdown():
     # check for new messages every random seconds
     sleep_time = random.randint(30 * 60, 60 * 60)
     print(f"[{get_now()}] Timeout duration: {sleep_time} seconds.")
-    
+
     for remaining_time in range(sleep_time, 0, -1):
         sys.stdout.write(f"\r[{get_now()}] Time remaining: {remaining_time} second(s).")
         sys.stdout.flush()
         time.sleep(1)
-    
+
     sys.stdout.write("\n")
+
+def download_clip(client, clip_pk):
+    print(f"[{get_now()}] Downloading reel {clip_pk}")
+
+    # Get the current working directory
+    cwd = os.getcwd()
+
+    # Construct the path to the download folder
+    download_path = os.path.join(cwd, "download")
+
+    # Check if the download folder exists
+    if not os.path.exists(download_path):
+        os.makedirs(download_path)
+        print(f"[{get_now()}] Created {download_path}")
+
+    client.video_download(clip_pk, "download")
+    print(f"[{get_now()}] Downloaded {clip_pk}")
+    client.delay_range = [1, 3]
+
 
 def main():
     cl = Client()
@@ -70,8 +90,6 @@ def main():
 
     seen_message_ids = load_seen_messages(seen_messages_file)
     print(f"[{get_now()}] Loaded seen messages.")
-
-    sleep_time = random.randint(15 * 60, 30 * 60)
 
     while True:
         try:
@@ -93,20 +111,7 @@ def main():
                                     f"[{get_now()}] Downloading reel {message.clip.pk}"
                                 )
                                 try:
-                                    # Get the current working directory
-                                    cwd = os.getcwd()
-
-                                    # Construct the path to the download folder
-                                    download_path = os.path.join(cwd, "download")
-
-                                    # Check if the download folder exists
-                                    if not os.path.exists(download_path):
-                                        os.makedirs(download_path)
-                                        print(f"[{get_now()}] Created {download_path}")
-
-                                    cl.video_download(message.clip.pk, "download")
-                                    print(f"[{get_now()}] Downloaded {message.clip.pk}")
-                                    cl.delay_range = [1, 3]
+                                    download_clip(cl, message.clip.pk)
                                 except Exception as e:
                                     print(e)
                             case "xma_story_share":
@@ -130,7 +135,6 @@ def main():
             os.execv(sys.executable, ["python"] + sys.argv)
 
         sleep_countdown()
-
 
 if __name__ == "__main__":
     main()
