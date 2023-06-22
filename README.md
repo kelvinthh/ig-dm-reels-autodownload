@@ -1,6 +1,6 @@
 # Instagram DM Reels Auto-downloader (DM Reel Bot/Downloader)
 
-This script monitors Instagram direct messages and downloads reels shared via direct messages every 30 to 60 minutes into a `download` folder. It uses the [instagrapi](https://github.com/adw0rd/instagrapi) library to access and interact with the instagrapi.
+This script monitors Instagram direct messages and downloads reels shared via direct messages every 30 to 60 minutes into a `download` folder. It uses the [instagrapi](https://github.com/adw0rd/instagrapi) library to access and interact with Instagram.
 
 ⚠️ Warning ⚠️
 
