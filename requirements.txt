@@ -1,20 +1,24 @@
-black @ file:///Users/runner/miniforge3/conda-bld/black-recipe_1682492095737/work
+black==23.7.0
 certifi==2022.12.7
 charset-normalizer==3.1.0
-click @ file:///home/conda/feedstock_root/build_artifacts/click_1666798198223/work
+click==8.1.6
 docopt==0.6.2
 idna==3.4
 instagrapi==1.17.6
-mypy-extensions @ file:///home/conda/feedstock_root/build_artifacts/mypy_extensions_1675543315189/work
-packaging @ file:///home/conda/feedstock_root/build_artifacts/packaging_1681337016113/work
-pathspec @ file:///home/conda/feedstock_root/build_artifacts/pathspec_1678853982175/work
+mypy-extensions==1.0.0
+packaging==23.1
+pathspec==0.11.2
 Pillow==9.5.0
-platformdirs @ file:///home/conda/feedstock_root/build_artifacts/platformdirs_1682644429438/work
+pip==23.2.1
+platformdirs==3.10.0
 pycryptodomex==3.17
 pydantic==1.10.7
 PySocks==1.7.1
 python-dotenv==1.0.0
 requests==2.29.0
-typing_extensions @ file:///home/conda/feedstock_root/build_artifacts/typing_extensions_1678559861143/work
+setuptools==68.0.0
+tomli==2.0.1
+typing_extensions==4.7.1
 urllib3==1.26.15
+wheel==0.41.0
 yarg==0.1.9
